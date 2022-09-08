@@ -4,7 +4,7 @@ const blogPostController = require('../controllers/blogPost')
 const { ensureAuth } = require('../middleware/auth')
 
 router.get('/', ensureAuth, blogPostController.getPosts)
-router.get('/display/:id', ensureAuth, blogPostController.getDisplayPostPage)
+router.get('/display/:id', blogPostController.getDisplayPostPage)
 
 router.get('/createBlogPost', ensureAuth, blogPostController.getCreatePostPage)
 router.post('/createBlogPost', ensureAuth, blogPostController.createBlogPost)

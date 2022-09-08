@@ -8,24 +8,21 @@
 
         <ul>
             <h2>You have logged <%= postCount %> journal entries.</h2>
-            <% BlogPost.forEach( items => { %>
-                <li class='postItem' data-id='<%=items._id%>'>
-                    <div class='title'> <h4><a href="/blogPost/display/<%=items._id%>"><%= items.title %></a></h4></div> 
-                    <div class='body'> <a href="/blogPost/display/<%=items._id%>"><%= items.body %></a></div>
-                    <div class='gitHub'><i class="<% if(items.gitHub) { %>fa-brands fa-github <% } %>"></i> <a href="<% if(items.gitHub) { %> <%= items.gitHub %> <% } %>"><%= items.gitHub %></a></div>
-                    <div class='date'><%= items.date %></div>
-                    <div class='dueDate'><% if(items.dueDate) { %> Due <%= items.dueDate %> <% } %></div>
-                    <div class="mood">Mood: <%= items.mood %></div>
-                    <div id="actionsContainer">
-                        <form action="/blogPost/edit/<%= items._id %>" action="GET">
-                            <input type="submit" class="button-18 actionButton editButton" value="Edit">
-                        </form>
-                        <button onclick="deletePost" class="button-18 del actionButton" id="del">Delete</button>
-                    </div>
+            <% BlogPost.forEach( blogPost => { %>
+                <li class='postItem' data-id='<%=blogPost._id%>'>
+                    <div class='title'> <h4><a href="/blogPost/display/<%=blogPost._id%>"><%= blogPost.title %></a></h4></div> 
+                    <div class='body'> <a href="/blogPost/display/<%=blogPost._id%>"><%= blogPost.body %></a></div>
+                    <div class='gitHub'><i class="<% if(blogPost.gitHub) { %>fa-brands fa-github <% } %>"></i> <a href="<% if(blogPost.gitHub) { %> <%= blogPost.gitHub %> <% } %>"><%= blogPost.gitHub %></a></div>
+                    <div class='date'><%= blogPost.date %></div>
+                    <div class='dueDate'><% if(blogPost.dueDate) { %> Due <%= blogPost.dueDate %> <% } %></div>
+                    <div class="mood">Mood: <%= blogPost.mood %></div>
+                    <%-include ('partials/actions', {blogPost: blogPost}) %>
                 </li> 
             <% }) %>
         </ul>
         <script src="/js/localdatetime.js"></script>
         <script src="/js/main.js"></script>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
     </body>
 </html>
