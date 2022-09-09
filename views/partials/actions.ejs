@@ -1,6 +1,6 @@
 <% if (user.id == blogPost.userId) { %>
     <div id="actionsContainer">
-        <form action="/blogPost/edit/<%= blogPost._id %>" action="GET">
+        <form action="/blogPost/edit/<%= blogPost._id %>" method="GET">
             <input type="submit" class="editButton button-18 actionButton" value="Edit">
         </form>
         <button onclick="deletePost" class="button-18 del actionButton" id="del">Delete</button>
