@@ -250,6 +250,7 @@ ul {
 li > .title {
     color: white;
     margin: 2em .2em 0;
+    max-width: 80%;
 }
 
 li .body {
@@ -260,6 +261,7 @@ li .body {
 li .gitHub {
     margin: 1em 0;
     font-size: .6em;
+    max-width: 80%;
 }
 
 li .date {

@@ -7,7 +7,7 @@ try {
     logo.addEventListener('mouseover', animateLogo)
 } 
 catch (err) {
-    console.error(err)
+    console.log('')
 }
 
 try {
@@ -16,7 +16,7 @@ try {
     biglogo.addEventListener('mouseover', animateLogo)
 }
 catch (err) {
-    console.error(err)
+    console.log('')
 }
 
 Array.from(deleteBtn).forEach((el)=>{

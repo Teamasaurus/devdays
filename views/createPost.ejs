@@ -8,14 +8,14 @@
     <h1>Create New Post </h1>
     <form action="/blogPost/createBlogPost" method="POST">
         <div id="mainInput">
-            <label for="title">Title</label><input id="title" name="title" placeholder="">
+            <label for="title">Title</label><input id="title" name="title" required placeholder="">
             <h3 id="date" name="date">
                 <%= new Date().toLocaleString('en-us',{ 
                                                         weekday:"long", 
                                                         year:"numeric", 
                                                         month:"short", 
                                                         day:"numeric"}) %></h3>
-            <label for="area">Your Thoughts:</label><textarea id="postBody" name="postBody" rows="20" cols="50" placeholder="Write your daily dev journey here!"></textarea>
+            <label for="area">Your Thoughts:</label><textarea id="postBody" name="postBody" rows="20" cols="50" required placeholder="Write your daily dev journey here!"></textarea>
         </div>
         <div>
             <label for="gitHub">GitHub Link</label><input id="gitHub" name="gitHub" placeholder="GitHub Link">
