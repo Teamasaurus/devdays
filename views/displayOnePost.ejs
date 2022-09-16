@@ -14,7 +14,7 @@
                 <div class='date'><%= blogPost.date %></div>
                 <div class='dueDate'><% if(blogPost.dueDate) { %> Due <%= blogPost.dueDate %><% } %></div>
                 <div class="mood">Mood: <%= blogPost.mood %></div>
-                <div id="actionsContainer">
+                <div id="actionsContainer" <% if (user.id != blogPost.user_id) { %> hidden <% } %>>
                     <form action="/blogPost/edit/<%= blogPost._id %>" action="GET">
                         <input type="submit" class="editButton button-18 actionButton" value="Edit">
                     </form>
@@ -26,10 +26,29 @@
                         Tweet
                     </a>
                 </div>
+                    <div class="row">
+                    <div class="col-6">
+                        <span id="commentCount"><%= comments.length %> comments </span>
+                    </div>
+                    <div id="comment">
+                        <% for (let i=0; i < comments.length; i++) { %>
+                            <h6><%= comments[i].userId %> said: </h6>
+                                <p><%= comments[i].body %></p>
+                       <% } %>
+                        </div>
+                        <div id="createComment" class="row">
+                            <form action="/comment/createComment/<%=blogPost._id%>" method="POST">
+                                <textarea id="newCommentBody" name="commentBody" value=""></textarea>
+                                <div class="row align-self-end">
+                                <input type="submit" class="button button-18" value="Comment++">
+                                </div>
+                            </form>
+                            </div>
+
+                </div>
+                    
             </li>
         </ul>
-        <script src="/js/localdatetime.js"></script>
-        <script src="/js/main.js"></script>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </body>
+    <%- include('partials/footer.ejs') %>
 </html>

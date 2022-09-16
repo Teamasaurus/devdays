@@ -7,17 +7,18 @@
         <a id='newPost' href="/blogPost/createBlogPost"><i class="fa-solid fa-circle-plus"></i> Create New Post</a>
 
         <ul>
-            <h2>You have logged <%= postCount %> journal entries.</h2>
-            <% BlogPost.forEach( items => { %>
-                <li class='postItem' data-id='<%=items._id%>'>
-                    <div class='title'> <h4><a href="/blogPost/display/<%=items._id%>"><%= items.title %></a></h4></div> 
-                    <div class='body'> <a href="/blogPost/display/<%=items._id%>"><%= items.body %></a></div>
-                    <div class='gitHub'><i class="<% if(items.gitHub) { %>fa-brands fa-github <% } %>"></i> <a href="<% if(items.gitHub) { %> <%= items.gitHub %> <% } %>"><%= items.gitHub %></a></div>
-                    <div class='date'><%= items.date %></div>
-                    <div class='dueDate'><% if(items.dueDate) { %> Due <%= items.dueDate %> <% } %></div>
-                    <div class="mood">Mood: <%= items.mood %></div>
+            <h2>You have logged <%= blogPosts.length %> journal entries.</h2>
+            <% blogPosts.forEach( post => { %>
+                <li class='postItem' data-id='<%=post._id%>'>
+                    <div class='title'> <h4><a href="/blogPost/display/<%=post._id%>"><%= post.title %></a></h4></div> 
+                    <div class='body'> <a href="/blogPost/display/<%=post._id%>"><%= post.body %></a></div>
+                    <div class='gitHub'><i class="<% if(post.gitHub) { %>fa-brands fa-github <% } %>"></i> <a href="<% if(post.gitHub) { %> <%= post.gitHub %> <% } %>"><%= post.gitHub %></a></div>
+                    <div class='date'><%= post.date %></div>
+                    <div class='dueDate'><% if(post.dueDate) { %> Due <%= post.dueDate %> <% } %></div>
+                    <div class="mood">Mood: <%= post.mood %></div>
+                    <div class="commentCount">
                     <div id="actionsContainer">
-                        <form action="/blogPost/edit/<%= items._id %>" action="GET">
+                        <form action="/blogPost/edit/<%= post._id %>" action="GET">
                             <input type="submit" class="button-18 actionButton editButton" value="Edit">
                         </form>
                         <button onclick="deletePost" class="button-18 del actionButton" id="del">Delete</button>
@@ -25,7 +26,6 @@
                 </li> 
             <% }) %>
         </ul>
-        <script src="/js/localdatetime.js"></script>
-        <script src="/js/main.js"></script>
+        <%- include('partials/footer.ejs') %>
     </body>
 </html>

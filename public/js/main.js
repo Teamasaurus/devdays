@@ -7,7 +7,7 @@ try {
     logo.addEventListener('mouseover', animateLogo)
 } 
 catch (err) {
-    console.error(err)
+    console.log('')
 }
 
 try {
@@ -16,7 +16,7 @@ try {
     biglogo.addEventListener('mouseover', animateLogo)
 }
 catch (err) {
-    console.error(err)
+    console.log('')
 }
 
 Array.from(deleteBtn).forEach((el)=>{
@@ -45,6 +45,25 @@ async function deletePost(){
     if (confirm("Are you sure you want to delete this post? This can't be undone!")) {
         try{
             const response = await fetch('/blogPost/deletePost', {
+                method: 'delete',   
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    'postIdFromJSFile': postId
+                })
+            })
+            const data = await response.json()
+            console.log(data)
+            location.assign('/')
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+async function deleteComment(){
+    const postId = this.parentNode.parentNode.dataset.id
+    if (confirm("Are you sure you want to delete this comment? This can't be undone!")) {
+        try{
+            const response = await fetch('/comment/deleteComment', {
                 method: 'delete',   
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
