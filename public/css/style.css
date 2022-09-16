@@ -117,6 +117,12 @@ label {
 #actionsContainer #del:hover {
     background-color: red;
 }
+.commentDel {
+    background-color: gray;
+}
+.commentDel {
+    background-color: red;
+}
  #actionsContainer #twitter-widget-0 {
     height: 30px ;
 } 

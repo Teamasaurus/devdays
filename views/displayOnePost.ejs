@@ -17,18 +17,22 @@
                 <%- include('partials/actions') %>
                     <div class="row">
                     <div class="col-6">
-                        <span id="commentCount"><%= comments.length %> comments </span>
+                        <h4 id="commentCount"><%= comments.length %> comments </h4>
                     </div>
                     <div id="comment">
                         <% for (let i=0; i < comments.length; i++) { %>
+                        <div data-id="<%=comments[i]._id%>">
                             <h6><%= comments[i].userId %> said: </h6>
-                                <p><%= comments[i].body %></p>
+                                <p class="body"><%= comments[i].body %></p>
+                                <%-include ('partials/commentActions', {comment: comments[i]}) %>
                        <% } %>
                         </div>
                         <div id="createComment" class="row">
                             <form action="/comment/createComment/<%=blogPost._id%>" method="POST">
-                                <textarea id="newCommentBody" name="commentBody" value=""></textarea>
-                                <div class="row align-self-end">
+                                
+
+                                <textarea id="newCommentBody" name="commentBody" class="body" value=""></textarea>
+                                <div class="row">
                                 <input type="submit" class="button button-18" value="Comment++">
                                 </div>
                             </form>

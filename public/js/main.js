@@ -1,5 +1,6 @@
 const deleteBtn = document.querySelectorAll('.del')
 const postItem = document.querySelectorAll('span.not')
+const commentDeletes = document.querySelectorAll('.commentDel')
 
 try {
     const logo = document.querySelector('#logo')
@@ -23,6 +24,10 @@ Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deletePost)
 })
 
+Array.from(commentDeletes).forEach((el)=>{
+    el.addEventListener('click', deleteComment)
+})
+
 function animateLogo(event) {
     console.log('moved in!')
     const imageElement = event.target;
@@ -34,13 +39,8 @@ function stopAnimateLogo(event) {
     imageElement.src = '/images/staticlogo.png'
 }
 
-function confirmDelete(event) {
-    console.log('are you sure?')
-    const dialog = confirm("Are you sure you want to delete this post?")
-    return dialog
-}
-
 async function deletePost(){
+    console.log('lol')
     const postId = this.parentNode.parentNode.dataset.id
     if (confirm("Are you sure you want to delete this post? This can't be undone!")) {
         try{
@@ -59,15 +59,17 @@ async function deletePost(){
         }
     }
 }
+
 async function deleteComment(){
-    const postId = this.parentNode.parentNode.dataset.id
+    console.log('this is the one')
+    const commentId = this.parentNode.parentNode.dataset.id
     if (confirm("Are you sure you want to delete this comment? This can't be undone!")) {
         try{
             const response = await fetch('/comment/deleteComment', {
                 method: 'delete',   
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
-                    'postIdFromJSFile': postId
+                    'postIdFromJSFile': commentId
                 })
             })
             const data = await response.json()
