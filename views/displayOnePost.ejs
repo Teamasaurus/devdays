@@ -14,7 +14,7 @@
                 <div class='date'><%= blogPost.date %></div>
                 <div class='dueDate'><% if(blogPost.dueDate) { %> Due <%= blogPost.dueDate %><% } %></div>
                 <div class="mood">Mood: <%= blogPost.mood %></div>
-                <%- include('partials/actions')>
+                <%- include('partials/actions') %>
                     <div class="row">
                     <div class="col-6">
                         <span id="commentCount"><%= comments.length %> comments </span>

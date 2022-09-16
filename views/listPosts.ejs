@@ -7,8 +7,8 @@
         <a id='newPost' href="/blogPost/createBlogPost"><i class="fa-solid fa-circle-plus"></i> Create New Post</a>
 
         <ul>
-            <h2>You have logged <%= postCount %> journal entries.</h2>
-            <% BlogPost.forEach( blogPost => { %>
+            <h2>You have logged <%= blogPosts.length %> journal entries.</h2>
+            <% blogPosts.forEach( blogPost => { %>
                 <li class='postItem' data-id='<%=blogPost._id%>'>
                     <div class='title'> <h4><a href="/blogPost/display/<%=blogPost._id%>"><%= blogPost.title %></a></h4></div> 
                     <div class='body'> <a href="/blogPost/display/<%=blogPost._id%>"><%= blogPost.body %></a></div>

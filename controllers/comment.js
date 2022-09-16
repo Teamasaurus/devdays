@@ -11,9 +11,9 @@ module.exports = {
                 postId: req.params.postId,
                 userId: req.user.id})
             console.log('Comment has been posted!')
-            const blogPost = BlogPost.find({_id: req.body.postId})
-            const comments = Comment.find({postId: req.params.postId}).sort({date: "desc"}).lean()
-            res.render('displayOnePost.ejs', {blogPost: blogPost, postId: blogPost.userId, comments: comments, user: req.user})
+            const blogPost = await BlogPost.find({_id: req.body.postId}).lean()
+            const comments = await Comment.find({postId: req.params.postId}).sort({date: "desc"}).lean()
+            res.redirect(`/blogPost/display/${req.params.postId}`)
         }catch(err){
             console.log(err)
         }
