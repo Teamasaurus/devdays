@@ -23,7 +23,7 @@
                         <% for (let i=0; i < comments.length; i++) { %>
                         <div data-id="<%=comments[i]._id%>">
                             <h6><%= comments[i].userId %> said: </h6>
-                                <p class="body"><%= comments[i].body %></p>
+                                <p><%= comments[i].body %></p>
                                 <%-include ('partials/commentActions', {comment: comments[i]}) %>
                        <% } %>
                         </div>
