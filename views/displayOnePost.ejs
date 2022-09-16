@@ -24,7 +24,7 @@
                         <div data-id="<%=comments[i]._id%>">
                             <h6><%= comments[i].userId %> said: </h6>
                                 <p><%= comments[i].body %></p>
-                                <%-include ('partials/commentActions', {comment: comments[i]}) %>
+                                <%-include ('partials/commentActions', {comment: comments[i], blogPost: blogPost}) %>
                        <% } %>
                         </div>
                         <div id="createComment" class="row">

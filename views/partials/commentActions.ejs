@@ -1,5 +1,5 @@
 <% if (user.id == comment.userId) { %>
-        <div data-id="<%= comment._id %>">
-                <button onclick="deleteComment" class="button-18 commentDel actionButton">Delete</button>
+        <div data-id="<%= comment._id %>" data-postId="<%= blogPost._id %>">
+                <button class="button-18 commentDel actionButton">Delete</button>
         </div>
-        <% } %>
+<% } %>

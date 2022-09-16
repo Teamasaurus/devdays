@@ -32,12 +32,14 @@ module.exports = {
     },
     deleteComment: async (req, res)=>{
         try{
-            await Comment.findOneAndDelete({_id: req.body.postIdFromJSFile})
+            console.log(req.body.commentIdFromJSFile)
+            await Comment.findOneAndDelete({_id: req.body.commentIdFromJSFile})
             console.log('Deleted Comment')
             res.json('Deleted It')
             
         }catch(err){
             console.log(err)
+            res.json('Why?!')
         }
     }
 }

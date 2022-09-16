@@ -40,7 +40,6 @@ function stopAnimateLogo(event) {
 }
 
 async function deletePost(){
-    console.log('lol')
     const postId = this.parentNode.parentNode.dataset.id
     if (confirm("Are you sure you want to delete this post? This can't be undone!")) {
         try{
@@ -61,20 +60,21 @@ async function deletePost(){
 }
 
 async function deleteComment(){
-    console.log('this is the one')
     const commentId = this.parentNode.parentNode.dataset.id
+
     if (confirm("Are you sure you want to delete this comment? This can't be undone!")) {
         try{
             const response = await fetch('/comment/deleteComment', {
                 method: 'delete',   
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify({
-                    'postIdFromJSFile': commentId
+                    'commentIdFromJSFile': commentId
                 })
             })
             const data = await response.json()
             console.log(data)
-            location.assign('/')
+            const blogPostId = this.parentNode.parentNode.dataset.postid
+            location.assign(`/`)
         }catch(err){
             console.log(err)
         }
