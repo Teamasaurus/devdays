@@ -1,12 +1,12 @@
 const BlogPost = require('../models/BlogPost')
+const Comment = require('../models/Comment')
 
 module.exports = {
     getPosts: async (req,res)=>{
         console.log(req.user)
         try{
-            const postItems = await BlogPost.find({userId:req.user.id}).sort({date: -1})
-            const numberOfPosts = await BlogPost.countDocuments({userId:req.user.id})
-            res.render('listPosts.ejs', {BlogPost: postItems, postCount: numberOfPosts, user: req.user})
+            const blogPosts = await BlogPost.find({userId:req.user.id}).sort({date: -1})
+            res.render('listPosts.ejs', {blogPosts: blogPosts, user: req.user})
         }catch(err){
             console.log(err)
         }
@@ -32,7 +32,8 @@ module.exports = {
         console.log(req.params.id)
         try{
             const postToDisplay = await BlogPost.findById(req.params.id)
-            res.render('displayOnePost.ejs', {blogPost: postToDisplay, postId:req.params.id, user: req.user})
+            const comments = await Comment.find({ postId: postToDisplay._id})
+            res.render('displayOnePost.ejs', {blogPost: postToDisplay, comments: comments, postId:postToDisplay, user: req.user})
         }catch(err){
             console.log(err)
         }
